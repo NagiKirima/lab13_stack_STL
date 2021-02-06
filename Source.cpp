@@ -6,14 +6,25 @@ stack <int> stack_list;
 int GetSize() 
 {
 	int size;
-	cout << "¬ведите размер стека:\t";
-	cin >> size;
-	while (size < 1) 
+	cout << "¬ведите длину стека:\t";
+	while (!(cin >> size) || (cin.peek() != '\n') || size < 1)
 	{
+		cin.clear();
+		while (cin.get() != '\n');
 		cout << "¬ведите корректное число:\t";
-		cin >> size;
 	}
 	return size;
+}
+int Get_int() 
+{
+	int number;
+	while (!(cin >> number) || (cin.peek() != '\n'))
+	{
+		cin.clear();
+		while (cin.get() != '\n');
+		cout << "¬ведите корректное число:\t";
+	}
+	return number;
 }
 void Create_stack(int size) 
 {
@@ -21,7 +32,7 @@ void Create_stack(int size)
 	for (int i = 0; i < size; i++)
 	{
 		cout << "¬ведите " << i << "-й элемент стека:\t";
-		cin >> tmp;
+		tmp = Get_int();
 		stack_list.push(tmp);
 	}
 }
